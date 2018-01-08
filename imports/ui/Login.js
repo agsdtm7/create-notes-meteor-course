@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Meteor } from 'meteor/meteor';
+import { createContainer } from 'meteor/react-meteor-data';
 
-
-export default class Login extends React.Component{
+// we elaborate the default at line 7 then set the default with the createContainer in line 55
+export class Login extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -15,9 +17,10 @@ export default class Login extends React.Component{
 
     let email = this.refs.email.value.trim();
     let password = this.refs.password.value.trim();
-
-    Meteor.loginWithPassword({email}, password, (err) => {
-      // when there is error, display what the error is (refer to line #32)
+    // on line 21, we change 'Meteor' with 'this.props' after we called it in the createContainer line 56
+    this.props.loginWithPassword({email}, password, (err) => {
+    //Meteor.loginWithPassword({email}, password, (err) => {
+      // when there is error, display what the error is (refer to line #34)
       if(err){
         this.setState({error: err.reason});
       }else{
@@ -42,3 +45,16 @@ export default class Login extends React.Component{
     );
   }
 }
+
+// added at lecture 128
+// this props is required
+Login.propTypes = {
+  loginWithPassword: React.PropTypes.func.isRequired
+};
+// we set the default here. This function is reactive!!!!
+// this is where createContainer helps with the props loginWithPassword
+export default createContainer(() => {
+    return {
+      loginWithPassword: Meteor.loginWithPassword
+    };
+}, Login); // this means we re-rendering our component
