@@ -7,7 +7,7 @@ import NoteList from './NoteList';
 // Containerized component
 // Passing a single props which is title -> line 13
 //-------------------------------------------------------------------
-export default () => {
+const Dashboard = () => {
   return (
     <div>
       <PrivateHeader title="Dashboard" />
@@ -17,6 +17,10 @@ export default () => {
   </div>
   );
 };
+// If a component doesn't have any name (anonymous),
+// react developer tool will recognize it as 'unknown' component
+//https://stackoverflow.com/questions/43458971/react-dev-tools-show-my-component-as-unknown#
+export default Dashboard;
 
 // set max width equal to our config value
 // set margin to auto on sides to center

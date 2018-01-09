@@ -4,29 +4,34 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 // in notes.js we set it up as name export
 import { Notes } from '../api/notes';
-
 import NoteListHeader from './NoteListHeader';
-
 import NoteListItem from './NoteListItem';
-export const NoteList = (props) => {
-  return (
-    <div>
-    <NoteListHeader />
-    {props.notes.map((note) => {
-      return <NoteListItem key={note._id} note={note}/>;
-    })}
-    {
-      /**
-      Use map method to cover notes array into jsx array
-      Set Up key props equal to ID
-      Setup note prop
-     */
-   }
+import NoteListEmptyItem from './NoteListEmptyItem';
 
-      NoteList { props.notes.length }
-    </div>
-  );
-};
+//1. create new file setup default export for functional component.
+// 2. Pick some text
+// 3. conditionally render NoteListEmptyItem when notes
+
+export const NoteList = (props) => {
+    return (
+      <div>
+      <NoteListHeader />
+      { // this is a way to inject if condition
+        props.notes.length === 0 ? <NoteListEmptyItem /> : undefined }
+        {props.notes.map((note) => {
+          return <NoteListItem key={note._id} note={note}/>;
+        })}
+        {
+        /**
+        Use map method to cover notes array into jsx array
+        Set Up key props equal to ID
+        Setup note prop
+       */
+     }
+        NoteList { props.notes.length }
+      </div>
+    );
+  };
 
 NoteList.propTypes = {
   notes: React.PropTypes.array.isRequired
