@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { mount } from 'enzyme';
 
 import { notes } from '../fixtures/fixtures';
-import NoteListItem from './NoteListItem';
+import { NoteListItem } from './NoteListItem';
 
 if (Meteor.isClient){
   describe('NoteListItem', function(){

@@ -3,6 +3,7 @@ import React from 'react';
 // import { Links } from '../api/links';
 import PrivateHeader from './PrivateHeader';
 import NoteList from './NoteList';
+import  Editor  from './Editor';
 //-----------------------Components------------------------------
 // Containerized component
 // Passing a single props which is title -> line 13
@@ -13,6 +14,7 @@ const Dashboard = () => {
       <PrivateHeader title="Dashboard" />
     <div className="page-content">
       <NoteList />
+      <Editor />
     </div>
   </div>
   );
