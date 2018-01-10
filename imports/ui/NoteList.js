@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-
+import { Session } from 'meteor/session';
 // in notes.js we set it up as name export
 import { Notes } from '../api/notes';
 import NoteListHeader from './NoteListHeader';
@@ -40,11 +40,17 @@ NoteList.propTypes = {
 // REMEMBER createContainer is REACTIVE, similar to Tracker.Autorun
 // if there is anything changes the code re-runs, re-rendering NoteList above
 export default createContainer(() => {
+  const selectedNoteId = Session.get('selectedNoteId');
   // we want to fetch the notes, meaning we subscribe at notes.js
   Meteor.subscribe('notes');
   // return followed with { } meaning we return an object
   return {
     // returning an ARRAY!!!! to be used in the line 15
-      notes: Notes.find().fetch()
+      notes: Notes.find().fetch().map((note) => {
+        return {
+          ...note,
+          selected: note._id === selectedNoteId
+        };
+      })
   };
 }, NoteList);

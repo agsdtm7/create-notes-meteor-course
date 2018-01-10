@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import ReactDOM from 'react-dom';
 import { Session } from 'meteor/session';
 import { Tracker } from 'meteor/tracker';
+import { browserHistory } from 'react-router';
 
 import { routes, onAuthChange } from '../imports/routes/routes';
 import '../imports/startup/simple-schema-configuration.js';
@@ -12,15 +13,16 @@ Tracker.autorun(() => {
   onAuthChange(isAuthenticated);
 });
 
-// sample usage how to use Session
-// Tracker.autorun(()=> {
-//   //Session.set('name', 'value')
-//   const name = Session.get('name');
-//   console.log(name);
-// })
-//
-// Session.set('name', 'Agus');
+// 17 - 23 taking care of the dynamic URL changes when user clicks on the note link
+Tracker.autorun(() => {
+  const selectedNoteId = Session.get('selectedNoteId');
+
+  if(selectedNoteId){
+    browserHistory.replace(`/dashboard/${selectedNoteId}`);
+  }
+});
 
 Meteor.startup(() => {
+  Session.set('selectedNoteId', undefined);
   ReactDOM.render(routes, document.getElementById('app'));
 });
