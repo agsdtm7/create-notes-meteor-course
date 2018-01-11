@@ -45,7 +45,7 @@ export class Signup extends React.Component{
                 <input type="password" ref="password" name="password" placeholder="Password" />
                 <button className="button">Create Account</button>
             </form>
-            <Link to="/login" >Already have an account?</Link>
+            <Link to="/" >Already have an account?</Link>
             </div>
           </div>
     );
@@ -60,4 +60,4 @@ export default createContainer(() => {
   return {
     createUser: Accounts.createUser
   };
-});
+}, Signup);

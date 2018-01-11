@@ -10,7 +10,9 @@ import '../imports/startup/simple-schema-configuration.js';
 Tracker.autorun(() => {
   // returning truthy or falsy value, when userId is null or empty string it will return false, otherwise true
   const isAuthenticated = !!Meteor.userId();
-  onAuthChange(isAuthenticated);
+  const currentPagePrivacy = Session.get('currentPagePrivacy');
+
+  onAuthChange(isAuthenticated, currentPagePrivacy);
 });
 
 // 17 - 23 taking care of the dynamic URL changes when user clicks on the note link
