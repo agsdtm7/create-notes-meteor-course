@@ -3,8 +3,7 @@ import React from 'react';
 const NoteListEmptyItem = () => {
   return (
     <div>
-      <p>you have no notes</p>
-    <p>hello there this is NoteListEmptyItem</p>
+      <p className="empty-item">Create a note to get started</p>
     </div>
   );
 }

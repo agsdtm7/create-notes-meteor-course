@@ -28,7 +28,6 @@ export const NoteList = (props) => {
         Setup note prop
        */
      }
-        NoteList { props.notes.length }
       </div>
     );
   };
