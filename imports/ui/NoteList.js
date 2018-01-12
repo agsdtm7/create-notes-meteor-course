@@ -46,7 +46,11 @@ export default createContainer(() => {
   // return followed with { } meaning we return an object
   return {
     // returning an ARRAY!!!! to be used in the line 15
-      notes: Notes.find().fetch().map((note) => {
+      notes: Notes.find({}, {
+        sort: {
+          updatedAt: -1
+        }
+      }).fetch().map((note) => {
         return {
           ...note,
           selected: note._id === selectedNoteId

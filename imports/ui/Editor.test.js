@@ -88,11 +88,5 @@ if(Meteor.isClient){
       expect(wrapper.state('body')).toBe('');
     });
 
-
-
-
-
-
-
   });
 }
