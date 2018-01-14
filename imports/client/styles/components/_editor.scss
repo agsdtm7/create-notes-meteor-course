@@ -25,6 +25,8 @@
   outline: none;
   padding: $input-spacing;
   resize: none;
+  // for scrolling issue
+  -webkit-overflow-scrolling: touch;
 }
 
 .editor__message{

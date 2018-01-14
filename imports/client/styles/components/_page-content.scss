@@ -19,6 +19,8 @@
   left: -100vw;
   right: 0;
   bottom: 0;
+  // telling sidebar to always on top
+  z-index: 1;
 
   @include desktop {
     display: flex;
