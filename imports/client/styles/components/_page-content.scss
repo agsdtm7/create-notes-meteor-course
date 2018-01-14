@@ -10,13 +10,27 @@
 }
 
 .page-content__sidebar{
-  //display: flex;
-  display: none;
-  padding-right: $large-space; // this one is different from the lecture #152
-  width: $page-content-sidebar-width;
-  @media (min-width: 50rem){
+  display: flex;
+  transition: left .3s ease;
+  width: 100vw;
+
+  position: fixed;
+  top: $header-height;
+  left: -100vw;
+  right: 0;
+  bottom: 0;
+
+  @include desktop {
     display: flex;
+    padding-right: $large-space; // this one is different from the lecture #152
+    position: static;
+    width: $page-content-sidebar-width;
   }
+}
+
+.is-nav-open .page-content__sidebar{
+  display: block;
+  left: 0;
 }
 
 // @media (min-width: 30rem){

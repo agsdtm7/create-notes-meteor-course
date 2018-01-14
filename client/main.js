@@ -18,13 +18,21 @@ Tracker.autorun(() => {
 // 17 - 23 taking care of the dynamic URL changes when user clicks on the note link
 Tracker.autorun(() => {
   const selectedNoteId = Session.get('selectedNoteId');
-
+  Session.set('isNavOpen', false); // to close it if user select a note
   if(selectedNoteId){
     browserHistory.replace(`/dashboard/${selectedNoteId}`);
   }
 });
 
+//#156
+Tracker.autorun(() => {
+  const isNavOpen = Session.get('isNavOpen');
+  document.body.classList.toggle('is-nav-open', isNavOpen);
+});
+
+
 Meteor.startup(() => {
   Session.set('selectedNoteId', undefined);
+  Session.set('isNavOpen', false);
   ReactDOM.render(routes, document.getElementById('app'));
 });
